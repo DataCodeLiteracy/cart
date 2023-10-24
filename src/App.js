@@ -2,8 +2,11 @@ import { css } from '@emotion/css'
 import Header from './components/Header'
 import ItemList from './components/ItemList'
 import CartModal from './components/CartModal'
+import { useSelector } from 'react-redux'
 
 function App() {
+  const cartIsVisible = useSelector((state) => state.ui.cartIsVisible)
+
   return (
     <div
       className={css`
@@ -13,7 +16,7 @@ function App() {
       `}
     >
       <Header />
-      <CartModal />
+      {cartIsVisible && <CartModal />}
       <ItemList />
     </div>
   )

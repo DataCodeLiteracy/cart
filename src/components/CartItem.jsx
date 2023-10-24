@@ -1,12 +1,33 @@
 import { css } from '@emotion/css'
+import { useDispatch } from 'react-redux'
+import { cartActions } from '../store/cart-slice'
 
-const CartItem = () => {
+const CartItem = ({ item }) => {
+  const dispatch = useDispatch()
+  const { id, title, quantity, total, price } = item
+
+  const handleRemoveItem = () => {
+    dispatch(cartActions.removeItemFromCart(id))
+  }
+
+  const handleAddItem = () => {
+    dispatch(
+      cartActions.addItemToCart({
+        id,
+        title,
+        price
+      })
+    )
+  }
+
   return (
     <li
       className={css`
         display: flex;
         justify-content: space-between;
         background-color: blue;
+        border: 1px solid black;
+        margin-top: 30px;
         width: 80%;
         margin-right: 65px;
         padding: 30px;
@@ -19,7 +40,7 @@ const CartItem = () => {
             font-size: 20px;
           `}
         >
-          테스트 아이템 1
+          {title}
         </div>
         <div
           className={css`
@@ -30,7 +51,7 @@ const CartItem = () => {
           `}
         >
           <span>x</span>
-          <span>1</span>
+          <span>{quantity}</span>
         </div>
       </div>
       <div
@@ -42,8 +63,11 @@ const CartItem = () => {
         `}
       >
         <div>
-          <span>6000원</span>
-          <span>(6000 원/item)</span>
+          <span>{total}원</span>
+          <span>
+            ({price}
+            {' 원'}/item)
+          </span>
         </div>
         <div
           className={css`
@@ -55,8 +79,8 @@ const CartItem = () => {
             }
           `}
         >
-          <button>-</button>
-          <button>+</button>
+          <button onClick={handleRemoveItem}>-</button>
+          <button onClick={handleAddItem}>+</button>
         </div>
       </div>
     </li>

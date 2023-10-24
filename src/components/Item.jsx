@@ -1,6 +1,15 @@
 import { css } from '@emotion/css'
+import { useDispatch } from 'react-redux'
+import { cartActions } from '../store/cart-slice'
 
-const Item = () => {
+const Item = ({ item }) => {
+  const dispatch = useDispatch()
+  const { title, price, description, id } = item
+
+  const handleAddItem = () => {
+    dispatch(cartActions.addItemToCart({ id, title, price }))
+  }
+
   return (
     <li
       className={css`
@@ -11,11 +20,13 @@ const Item = () => {
         margin: auto;
         padding: 20px;
         background-color: gray;
+        border: 1px solid black;
+        margin-top: 30px;
       `}
     >
       <div>
-        <h2>테스트 아이템 1</h2>
-        <div>테스트 아이템 1 설명</div>
+        <h2>{title}</h2>
+        <div>{description}</div>
       </div>
       <div
         className={css`
@@ -34,8 +45,8 @@ const Item = () => {
           }
         `}
       >
-        <div>6000원</div>
-        <button>카트 추가</button>
+        <div>{price}원</div>
+        <button onClick={handleAddItem}>카트 추가</button>
       </div>
     </li>
   )

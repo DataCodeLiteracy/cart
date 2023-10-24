@@ -1,7 +1,10 @@
 import { css } from '@emotion/css'
 import CartItem from './CartItem'
+import { useSelector } from 'react-redux'
 
 const CartModal = () => {
+  const cartItems = useSelector((state) => state.cart.items)
+
   return (
     <div
       className={css`
@@ -22,11 +25,23 @@ const CartModal = () => {
       <ul
         className={css`
           display: flex;
+          flex-direction: column;
           justify-content: center;
           width: 100%;
         `}
       >
-        <CartItem />
+        {cartItems.map((item) => (
+          <CartItem
+            key={item.id}
+            item={{
+              id: item.id,
+              title: item.title,
+              quantity: item.quantity,
+              total: item.totalPrice,
+              price: item.price
+            }}
+          />
+        ))}
       </ul>
     </div>
   )
