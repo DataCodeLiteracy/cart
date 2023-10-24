@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { css } from '@emotion/css'
+import Header from './components/Header'
+import ItemList from './components/ItemList'
+import CartModal from './components/CartModal'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      className={css`
+        width: 800px;
+        margin: auto;
+        margin-top: 30px;
+      `}
+    >
+      <Header />
+      <CartModal />
+      <ItemList />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
