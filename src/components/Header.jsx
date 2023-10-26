@@ -1,6 +1,15 @@
 import { css } from '@emotion/css'
+import { useDispatch, useSelector } from 'react-redux'
+import { uiActions } from '../store/ui-slice'
 
 const Header = () => {
+  const dispatch = useDispatch()
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity)
+
+  const handleShowCart = () => {
+    dispatch(uiActions.toggle())
+  }
+
   return (
     <div
       className={css`
@@ -11,6 +20,7 @@ const Header = () => {
     >
       <h1>ReduxCart</h1>
       <button
+        onClick={handleShowCart}
         className={css`
           display: flex;
           justify-content: space-around;
@@ -28,7 +38,7 @@ const Header = () => {
         `}
       >
         내 카트
-        <span>1</span>
+        <span>{totalQuantity}</span>
       </button>
     </div>
   )
