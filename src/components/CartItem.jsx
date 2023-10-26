@@ -2,9 +2,9 @@ import { css } from '@emotion/css'
 import { useDispatch } from 'react-redux'
 import { cartActions } from '../store/cart-slice'
 
-const CartItem = ({ item }) => {
+const CartItem = (props) => {
   const dispatch = useDispatch()
-  const { id, title, quantity, total, price } = item
+  const { id, title, quantity, total, price } = props.item
 
   const handleRemoveItem = () => {
     dispatch(cartActions.removeItemFromCart(id))

@@ -31,7 +31,13 @@ const ItemList = () => {
       <p>좋아하는 제품 구매</p>
       <ul>
         {mockItems.map((item) => (
-          <Item key={item.id} item={item} />
+          <Item
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            price={item.price}
+            description={item.description}
+          />
         ))}
       </ul>
     </div>

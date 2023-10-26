@@ -2,9 +2,10 @@ import { css } from '@emotion/css'
 import { useDispatch } from 'react-redux'
 import { cartActions } from '../store/cart-slice'
 
-const Item = ({ item }) => {
+const Item = (props) => {
   const dispatch = useDispatch()
-  const { title, price, description, id } = item
+
+  const { title, price, description, id } = props
 
   const handleAddItem = () => {
     dispatch(cartActions.addItemToCart({ id, title, price }))

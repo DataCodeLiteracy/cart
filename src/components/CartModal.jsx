@@ -30,18 +30,19 @@ const CartModal = () => {
           width: 100%;
         `}
       >
-        {cartItems.map((item) => (
-          <CartItem
-            key={item.id}
-            item={{
-              id: item.id,
-              title: item.title,
-              quantity: item.quantity,
-              total: item.totalPrice,
-              price: item.price
-            }}
-          />
-        ))}
+        {cartItems &&
+          cartItems.map((item) => (
+            <CartItem
+              key={item.id}
+              item={{
+                id: item.id,
+                title: item.title,
+                quantity: item.quantity,
+                total: item.totalPrice,
+                price: item.price
+              }}
+            />
+          ))}
       </ul>
     </div>
   )
